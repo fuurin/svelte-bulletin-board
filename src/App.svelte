@@ -1,36 +1,29 @@
 <script>
+  import { getComments } from './api'
   import { Container } from 'sveltestrap'
   import NavBar from './NavBar.svelte'
   import Comments from './Comments.svelte'
+  import Updater from './Updater.svelte'
   import Form from './Form.svelte'
 
-  let comments = [
-    {
-      name: 'Aさん',
-      text: 'おはよう',
-      timestamp: new Date('2021-04-07 07:00:00Z')
-    },
-    {
-      name: 'Bさん',
-      text: 'こんにちは\nみなさん',
-      timestamp: new Date('2021-04-07 12:00:00Z')
-    },
-    {
-      name: 'Cさん',
-      text: 'こんばんは\nお疲れ様です\nお元気ですか？',
-      timestamp: new Date('2021-04-07 19:00:00Z')
-    }
-  ]
-  const handleComment = (comment) => {
-    comments = [...comments, {...comment, timestamp: new Date()}]
+  let time = 0
+  let comments = []
+  async function updateComments() {
+    time = null // (time % 3) + 1 // 研修ではtime不要
+    comments = await getComments(time)
   }
+
+  updateComments()
 </script>
 
 <NavBar />
 <Container class="mt-4 mb-5">
   <Comments comments={comments}/>
+  <div class="mt-4">
+    <Updater on:update={updateComments}/>
+  </div>
   <hr class="my-4">
-  <Form on:comment={(event) => {handleComment(event.detail)}} />
+  <Form on:comment={updateComments} />
 </Container>
 
 <style>

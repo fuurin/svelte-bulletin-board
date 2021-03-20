@@ -1,18 +1,24 @@
 <script>
-  import { Card, CardHeader, CardBody, FormGroup, Label, Input, Button } from 'sveltestrap';
-  import { createEventDispatcher } from 'svelte';
-  const dispatch = createEventDispatcher();
+  import { Card, CardHeader, CardBody, FormGroup, Label, Input, Button } from 'sveltestrap'
+  import { postComment } from './api'
+  import { createEventDispatcher } from 'svelte'
+  const dispatch = createEventDispatcher()
   
   let name = ''
   let text = ''
-  const comment = () => {
+  let sending = false
+
+  async function comment (){
     if(!name || !text) {
       alert('入力されていない項目があります。')
       return
     }
-    // あとでaxiosにする。handleCommentで更新する。
-    dispatch('comment', {name, text})
+    sending = true
+    // 本番APIではタイムスタンプを送らずAPI側で記録された時間を入れる
+    await postComment({name, text, timestamp: new Date().toLocaleString({ timeZone: 'Asia/Tokyo' })})
+    dispatch('comment')
     text = ''
+    sending = false
   }
 </script>
 
@@ -27,6 +33,6 @@
       <Label>コメント</Label>
       <Input type='textarea' bind:value={text} />
     </FormGroup>
-    <Button color='success' on:click={comment}>投稿</Button>
+    <Button color='success' on:click={comment} disabled={sending}>投稿</Button>
   </CardBody>
 </Card>
