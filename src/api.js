@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://jsonbox.io/box_f3bc23b96ab0f70a8881'
+const BASE_URL = 'https://jsonbox.io/box_f3bc23b96ab0f70a8881/1'
 
 function handleError(e) {
   console.log(e)
@@ -17,14 +17,6 @@ export async function getComments(time=null) {
 export async function postComment(comment) {
   return await axios
     .post(BASE_URL, comment)
-    .then((res) => res)
-    .catch(handleError)
-}
-
-// 以下、研修では書かない
-export async function deleteComments() {
-  return await axios
-    .delete(BASE_URL, { params: { q: 'name:*' } }) // 本番APIではparams不要
     .then((res) => res)
     .catch(handleError)
 }

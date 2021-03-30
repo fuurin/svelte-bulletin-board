@@ -9,7 +9,6 @@
   let time = 0
   let comments = []
   async function updateComments() {
-    time = null // (time % 3) + 1 // 研修ではtime不要
     comments = await getComments(time)
   }
 
