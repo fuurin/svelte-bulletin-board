@@ -1,15 +1,15 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://jsonbox.io/box_f3bc23b96ab0f70a8881/1'
+const BASE_URL = 'https://us-central1-glossom-bulletin-board-sample.cloudfunctions.net/Messages'
 
 function handleError(e) {
   console.log(e)
   alert('エラーが発生しました。')
 }
 
-export async function getComments(time=null) {
+export async function getComments() {
   return await axios
-    .get([BASE_URL, time].join('/'), { params: { sort: 'timestamp' } }) // 本番APIではparams不要
+    .get(BASE_URL)
     .then((res) => res.data)
     .catch(handleError)
 }

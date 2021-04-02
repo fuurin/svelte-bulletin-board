@@ -6,10 +6,9 @@
   import Updater from './Updater.svelte'
   import Form from './Form.svelte'
 
-  let time = 0
   let comments = []
   async function updateComments() {
-    comments = await getComments(time)
+    comments = await getComments()
   }
 
   updateComments()
