@@ -1,14 +1,13 @@
 <script>
   import { Card, CardHeader, CardBody, FormGroup, Label, Input, Button } from 'sveltestrap'
   import { postComment } from './api'
-  import { createEventDispatcher } from 'svelte'
-  const dispatch = createEventDispatcher()
+  import { updateComments } from './stores'
   
   let name = ''
   let text = ''
   let sending = false
 
-  async function comment (){
+  async function comment() {
     if(!name || !text) {
       alert('入力されていない項目があります。')
       return
@@ -16,7 +15,7 @@
     sending = true
     // 本番APIではタイムスタンプを送らずAPI側で記録された時間を入れる
     await postComment({name, text, timestamp: new Date().toLocaleString({ timeZone: 'Asia/Tokyo' })})
-    dispatch('comment')
+    updateComments()
     text = ''
     sending = false
   }

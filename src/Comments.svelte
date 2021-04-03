@@ -1,11 +1,10 @@
 <script>
   import { Card, CardHeader, CardBody } from 'sveltestrap'
   import { fade } from 'svelte/transition'
-  
-  export let comments
+  import { comments } from './stores'
 </script>
 
-{#each comments as comment, i}
+{#each $comments as comment, i}
   <div transition:fade>
     <Card class="my-3">
       <CardHeader>

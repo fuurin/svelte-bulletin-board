@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://us-central1-glossom-bulletin-board-sample.cloudfunctions.net/Messages'
+const BASE_URL = 'https://jsonbox.io/box_f3bc23b96ab0f70a8881/1'
 
 function handleError(e) {
   console.log(e)
@@ -9,7 +9,7 @@ function handleError(e) {
 
 export async function getComments() {
   return await axios
-    .get(BASE_URL)
+    .get(BASE_URL+'?sort=timestamp')
     .then((res) => res.data)
     .catch(handleError)
 }

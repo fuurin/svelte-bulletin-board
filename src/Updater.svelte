@@ -1,23 +1,20 @@
 <script>
   import { Button } from 'sveltestrap'
-  import { createEventDispatcher } from 'svelte'
-  const dispatch = createEventDispatcher()
+  import { updateComments } from './stores'
   const UPDATE_INTERVAL = 5000 // ms
 
   let timer = null
-
-  const update = () => dispatch('update')
   const autoUpdate = (checked) => {
     if (checked) {
-      update()
-      timer = setInterval(update, UPDATE_INTERVAL)
+      updateComments()
+      timer = setInterval(updateComments, UPDATE_INTERVAL)
     } else if (timer !== null) {
       clearInterval(timer)
     }
   }
 </script>
 
-<Button color='secondary' on:click={update}>
+<Button color='secondary' on:click={updateComments}>
   更新
 </Button>
 <label class='ml-3'>
