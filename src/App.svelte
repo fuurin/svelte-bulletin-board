@@ -23,6 +23,3 @@
   <hr class="my-4">
   <Form on:comment={updateComments} />
 </Container>
-
-<style>
-</style>

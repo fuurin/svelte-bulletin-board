@@ -8,7 +8,7 @@
   let text = ''
   let sending = false
 
-  async function comment (){
+  async function comment() {
     if(!name || !text) {
       alert('入力されていない項目があります。')
       return

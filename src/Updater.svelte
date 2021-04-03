@@ -1,9 +1,9 @@
 <script>
   import { Button } from 'sveltestrap'
   import { createEventDispatcher } from 'svelte'
+
   const dispatch = createEventDispatcher()
   const UPDATE_INTERVAL = 5000 // ms
-
   let timer = null
 
   const update = () => dispatch('update')
