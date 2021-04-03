@@ -14,8 +14,7 @@
       return
     }
     sending = true
-    // 本番APIではタイムスタンプを送らずAPI側で記録された時間を入れる
-    await postComment({name, text, timestamp: new Date().toLocaleString({ timeZone: 'Asia/Tokyo' })})
+    await postComment({name, text})
     dispatch('comment')
     text = ''
     sending = false

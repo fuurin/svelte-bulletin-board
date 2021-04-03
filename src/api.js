@@ -16,7 +16,7 @@ export async function getComments() {
 
 export async function postComment(comment) {
   return await axios
-    .post(BASE_URL, comment)
+    .post(BASE_URL, new URLSearchParams(comment))
     .then((res) => res)
     .catch(handleError)
 }
