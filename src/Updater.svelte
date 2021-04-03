@@ -1,9 +1,10 @@
 <script>
   import { Button } from 'sveltestrap'
   import { updateComments } from './stores'
-  const UPDATE_INTERVAL = 5000 // ms
 
+  const UPDATE_INTERVAL = 5000 // ms
   let timer = null
+
   const autoUpdate = (checked) => {
     if (checked) {
       updateComments()

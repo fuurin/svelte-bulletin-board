@@ -1,7 +1,9 @@
 <script>
   import { Card, CardHeader, CardBody } from 'sveltestrap'
   import { fade } from 'svelte/transition'
-  import { comments } from './stores'
+  import { comments, updateComments } from './stores'
+
+  updateComments()
 </script>
 
 {#each $comments as comment, i}
