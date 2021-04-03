@@ -13,7 +13,6 @@
       return
     }
     sending = true
-    // 本番APIではタイムスタンプを送らずAPI側で記録された時間を入れる
     await postComment({name, text})
     updateComments()
     text = ''
