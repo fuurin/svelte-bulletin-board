@@ -1,7 +1,10 @@
 <script>
   import { Card, CardHeader, CardBody } from 'sveltestrap'
   import { fade } from 'svelte/transition'
-  
+
+  import { createMarkdown } from "safe-marked"
+  const markdown = createMarkdown({ marked: { breaks: true } })
+
   export let comments
 </script>
 
@@ -12,9 +15,7 @@
         {i+1}: {comment.name} ({comment.timestamp})
       </CardHeader>
       <CardBody>
-        {#each comment.text.split('\n') as line}
-          {line} <br>
-        {/each}
+        { @html markdown(comment.text) }
       </CardBody>
     </Card>
   </div>
