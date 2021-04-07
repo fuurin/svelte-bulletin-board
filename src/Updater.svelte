@@ -1,5 +1,6 @@
 <script>
   import { Button } from 'sveltestrap'
+<<<<<<< HEAD
   import { updateComments } from './stores'
 
   const UPDATE_INTERVAL = 5000 // ms
@@ -22,3 +23,11 @@
   <input type="checkbox" on:change={e => autoUpdate(e.target.checked)}/>
   自動更新
 </label>
+=======
+  import { createEventDispatcher } from 'svelte'
+  const dispatch = createEventDispatcher()
+  const update = () => dispatch('update')
+</script>
+
+<Button color='secondary' on:click={update}>更新</Button>
+>>>>>>> master
