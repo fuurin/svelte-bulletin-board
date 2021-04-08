@@ -1,8 +1,7 @@
 <script>
   import { Card, CardHeader, CardBody, FormGroup, Label, Input, Button } from 'sveltestrap'
   import { postComment } from './api'
-  import { createEventDispatcher } from 'svelte'
-  const dispatch = createEventDispatcher()
+  import { updateComments } from './stores'
   
   let name = ''
   let text = ''
@@ -15,7 +14,7 @@
     }
     sending = true
     await postComment({name, text})
-    dispatch('comment')
+    updateComments()
     text = ''
     sending = false
   }

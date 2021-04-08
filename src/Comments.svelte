@@ -1,14 +1,15 @@
 <script>
   import { Card, CardHeader, CardBody } from 'sveltestrap'
   import { fade } from 'svelte/transition'
+  import { comments, updateComments } from './stores'
 
   import { createMarkdown } from "safe-marked"
   const markdown = createMarkdown({ marked: { breaks: true } })
 
-  export let comments
+  updateComments()
 </script>
 
-{#each comments as comment, i}
+{#each $comments as comment, i}
   <div transition:fade>
     <Card class="my-3">
       <CardHeader>
